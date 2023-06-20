@@ -1,0 +1,25 @@
+import speech_recognition as sr
+
+# Initialize recognizer class (for recognizing the speech)
+r = sr.Recognizer()
+
+def listen_and_process():
+    # Use the microphone as source for input.
+    with sr.Microphone() as source:
+        # Record the audio
+        audio = r.listen(source)
+        
+        try:
+            # Using google speech recognition
+            text = r.recognize_google(audio)
+            if "I am sad" in text:
+                pass  # User said 'I am sad', do something here
+            else:
+                print(text)  # User said something other than 'I am sad', print it
+                listen_and_process()  # repeat the process
+        except Exception as e:
+            print(f"An error occurred: {e}")  # Print the error if one occurred
+            listen_and_process()  # repeat the process
+
+# Call the function to start
+listen_and_process()
