@@ -6,6 +6,7 @@ r = sr.Recognizer()
 def listen_and_process():
     # Use the microphone as source for input.
     with sr.Microphone() as source:
+        print("Start Speaking")  # Notify the user to start speaking
         # Record the audio
         audio = r.listen(source)
         
@@ -23,3 +24,4 @@ def listen_and_process():
 
 # Call the function to start
 listen_and_process()
+
